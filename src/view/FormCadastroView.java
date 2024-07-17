@@ -4,6 +4,14 @@
  */
 package view;
 
+
+import dao.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Samuel
@@ -105,7 +113,26 @@ public class FormCadastroView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            
+            Connection conexao = new Conexao().getConnection();
+            System.out.println("Conexao bem sucedida");
+            String sql = "insert into usuario (usuario,senha) values ('campos','1234');";
+            
+            PreparedStatement statement = conexao.prepareStatement(sql);
+            statement.execute();
+            
+            conexao.close();
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Conexão mal sucedida");
+        }
+            
+
+       
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
@@ -156,4 +183,8 @@ public class FormCadastroView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
+
+    private Object Conexao() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
