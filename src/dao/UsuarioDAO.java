@@ -16,7 +16,7 @@ public class UsuarioDAO {
         this.connection = connection;
     }
     
-    public void insert(Usuario usuario) throws SQLException{
+    public Usuario insert(Usuario usuario) throws SQLException{
            // protecao contra insert attack nao concatenar
             String sql = "insert into usuario (usuario,senha) values (?,?);";
             
@@ -26,6 +26,8 @@ public class UsuarioDAO {
             statement.setString(2,usuario.getSenha());    
 
             statement.execute();
+            
+            return usuario;
    
         
     }

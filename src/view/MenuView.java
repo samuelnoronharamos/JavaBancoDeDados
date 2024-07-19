@@ -81,11 +81,8 @@ public class MenuView extends javax.swing.JFrame {
             
             // teste de insert
             Usuario usuarioInsert = new Usuario("testeusuarioinsert","654321");
-            usuarioDao.insert(usuarioInsert);
-            
+            Usuario usuarioInserido = usuarioDao.insert(usuarioInsert);
             //teste select id
-            
-            
             // teste delete
             // teste select all
             
