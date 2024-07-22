@@ -8,6 +8,7 @@ import java.sql.Connection;
 import dao.Conexao;
 import dao.UsuarioDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Usuario;
@@ -83,8 +84,19 @@ public class MenuView extends javax.swing.JFrame {
             Usuario usuarioInsert = new Usuario("testeusuarioinsert","654321");
             Usuario usuarioInserido = usuarioDao.insert(usuarioInsert);
             //teste select id
+            
+            Usuario usuarioSelecionado = usuarioDao.selectPorID(usuarioInserido);
+            
             // teste delete
+            
+            usuarioDao.delete(usuarioSelecionado);
+            
             // teste select all
+            ArrayList<Usuario> usuarios = usuarioDao.selectAll();
+            
+            for (Usuario usuario : usuarios) {
+                System.out.println(usuario.getUsuario());
+            }
             
             
         } catch (SQLException ex) {

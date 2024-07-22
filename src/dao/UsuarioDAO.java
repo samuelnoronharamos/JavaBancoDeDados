@@ -1,6 +1,7 @@
 package dao;
 
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,12 +21,19 @@ public class UsuarioDAO {
            // protecao contra insert attack nao concatenar
             String sql = "insert into usuario (usuario,senha) values (?,?);";
             
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS) ;
+                    //RETURN_GENERATED_KEYS);
 
             statement.setString(1,usuario.getUsuario());
             statement.setString(2,usuario.getSenha());    
 
             statement.execute();
+            
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if(resultSet.next()) {
+            int id = resultSet.getInt("id");
+            usuario.setId(id);
+            }
             
             return usuario;
    
